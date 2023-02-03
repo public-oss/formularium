@@ -39,7 +39,7 @@
                       elevation="1"
                       v-if="
                         interpreter.canGoBack() === true &&
-                          schema.backBtn !== false
+                        schema.backBtn !== false
                       "
                       @click="goBack"
                       >Zurück</v-btn
@@ -58,16 +58,16 @@
             <div v-if="schema.type === 'navigation'">
               <h1 class="pl-3 pt-3 my-3 title">{{ schema.schema.title }}</h1>
 
-              <p class="pl-3 ">{{ schema.schema.description }}</p>
+              <p class="pl-3">{{ schema.schema.description }}</p>
               <v-row fluid align="center" justify="center">
-                <v-col align-self="center" class="mx-3 ">
+                <v-col align-self="center" class="mx-3">
                   <v-btn
                     color="primary"
                     outlined
                     raised
                     block
                     rounded
-                    class=" my-4"
+                    class="my-4"
                     tile
                     large
                     v-for="item in schema.schema.oneOf"
@@ -84,7 +84,7 @@
                       raised
                       block
                       rounded
-                      class=" my-4"
+                      class="my-4"
                       tile
                       large
                       @click="goBack()"
@@ -162,16 +162,16 @@ export default {
         rules: {},
         initialValidation: "defined",
         idPrefix: "",
-        markdownit: {}
+        markdownit: {},
       },
       input_model: "",
       executorRunning: null,
       form: {
         input: {},
         submit: null,
-        model: null
+        model: null,
       },
-      interpreter: null
+      interpreter: null,
     };
   },
 
@@ -188,7 +188,7 @@ export default {
         render(props, executor) {
           executor.stop();
           executor.schemaUpdate(props);
-        }
+        },
       };
     },
 
@@ -214,19 +214,19 @@ export default {
         this.interpreter = new JSInterpreter(
           code,
           this.getNativeFunctions(),
-          function(schema) {
+          function (schema) {
             // on schema update
             if (schema.schemaID !== undefined) {
               schema.schema = {
                 type: "object",
-                properties: {}
+                properties: {},
               };
               schema.schema.properties[schema.name] =
                 that.sectionSchemas[schema.schemaID];
             }
             that.schemaUpdate(schema);
           },
-          function() {
+          function () {
             // on done
             that.generateReceipt();
             that.schemaUpdate({
@@ -234,8 +234,8 @@ export default {
               backBtn: false,
               schema: {
                 title: "Done!",
-                description: "Application finished successfully."
-              }
+                description: "Application finished successfully.",
+              },
             });
           }
         );
@@ -275,7 +275,7 @@ export default {
               message: await openpgp.message.fromText(
                 JSON.stringify(this.formData)
               ), // input as Message object the form data
-              publicKeys: pubkeys // for encryption
+              publicKeys: pubkeys, // for encryption
             });
 
             // submit the encrypted form to the backend and receive the signature as a prove that the form has been submitted
@@ -286,10 +286,10 @@ export default {
                 // Parameters
                 variables: {
                   formID: this.formID,
-                  content: encryptedContent
-                }
+                  content: encryptedContent,
+                },
               })
-              .then(data => {
+              .then((data) => {
                 // add signature & encrypted data to the pdf header
                 pdf.addSignature(
                   data.data.submitForm.content,
@@ -299,7 +299,7 @@ export default {
                 pdf.generate();
                 pdf.download();
               })
-              .catch(error => {
+              .catch((error) => {
                 console.error(error);
               });
           })();
@@ -335,28 +335,28 @@ export default {
       Object.assign(this.formData, result);
       this.$emit("contextUpdate", this.formData);
       this.execute();
-    }
+    },
   },
 
   watch: {
-    code: function(code) {
+    code: function (code) {
       this.interpreter = null;
       this.executeCode(code);
-    }
+    },
   },
   apollo: {
     publicKeysForForm: {
       query: require("../graphql/publicKeysForForm.gql"),
       variables() {
         return {
-          formID: this.$props.formID
+          formID: this.$props.formID,
         };
       },
       skip() {
         return this.$props.formID === null || this.debuggerMode === true;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

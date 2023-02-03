@@ -67,7 +67,7 @@ export default {
     reload() {
       this.$apollo.queries.allInternalForms.refetch();
       this.editFormID = null;
-    }
+    },
   },
   apollo: {
     me: {
@@ -76,15 +76,15 @@ export default {
       },
       skip() {
         return AUTH.isLoggedIn() === false;
-      }
+      },
     },
 
     allInternalForms: {
       query() {
         return require("../../graphql/admin/allInternalForms.gql");
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

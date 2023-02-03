@@ -34,7 +34,7 @@ export default {
     disabled: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
     rules: { type: Array, required: true },
-    on: { type: Object, required: true }
+    on: { type: Object, required: true },
   },
   data() {
     return {};
@@ -42,7 +42,7 @@ export default {
   computed: {
     sanitizedHtml() {
       return this.value && sanitizeHtml(this.value);
-    }
+    },
   },
   methods: {
     input(value) {
@@ -52,8 +52,8 @@ export default {
       if (value === "<p></p>") value = "";
       // sanitizing should also be done when receiving this data in the backend
       this.on.input(sanitizeHtml(value));
-    }
-  }
+    },
+  },
 };
 </script>
 

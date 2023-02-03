@@ -11,7 +11,7 @@
                 raised
                 block
                 rounded
-                class=" my-4"
+                class="my-4"
                 :href="loginURI"
                 tile
               >
@@ -30,11 +30,11 @@
 import * as AUTH from "../../auth.js";
 export default {
   name: "Login",
-  data: function() {
+  data: function () {
     return {
-      loginURI: AUTH.loginURI()
+      loginURI: AUTH.loginURI(),
     };
   },
-  components: {}
+  components: {},
 };
 </script>

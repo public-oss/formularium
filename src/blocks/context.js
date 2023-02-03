@@ -1,54 +1,50 @@
 import * as Blockly from "blockly/core";
 
 var CustomFields = CustomFields || {};
-CustomFields.Typeahead = function(text) {
+CustomFields.Typeahead = function (text) {
   CustomFields.Typeahead.superClass_.constructor.call(this, text);
   console.log(text);
 };
 
 Blockly.utils.object.inherits(CustomFields.Typeahead, Blockly.FieldTextInput);
 //Blockly.utils.object.inherits(CustomFields.Typeahead, Blockly.FieldDropdown);
-CustomFields.Typeahead.fromJson = function(options) {
+CustomFields.Typeahead.fromJson = function (options) {
   return new CustomFields.Typeahead(options["pitch"]);
 };
 Blockly.fieldRegistry.register("field_typeahead", CustomFields.Typeahead);
 
 // Taken and modified from https://stackoverflow.com/a/53620876
 function propertiesToArray(obj) {
-    const isObject = val =>
-        typeof val === 'object';
+  const isObject = (val) => typeof val === "object";
 
-    const addDelimiter = (a, b) =>
-        a ? `${a}.${b}` : b;
+  const addDelimiter = (a, b) => (a ? `${a}.${b}` : b);
 
+  const paths = (obj = {}, head = "", visited_paths = []) => {
+    for (let i in obj) {
+      if (Array.isArray(obj)) {
+        visited_paths.push(addDelimiter(head, obj[i]));
+      } else {
+        visited_paths.push(addDelimiter(head, i));
+      }
 
+      if (isObject(obj[i])) {
+        paths(obj[i], addDelimiter(head, i), visited_paths);
+      }
+    }
+    return visited_paths;
+  };
 
-    const paths = (obj = {}, head = '', visited_paths = []) => {
-        for(let i in obj) {
-          if(Array.isArray(obj)) {
-            visited_paths.push(addDelimiter(head, obj[i]));
-          } else {
-            visited_paths.push(addDelimiter(head, i));
-          }
-
-          if(isObject(obj[i])) {
-            paths(obj[i], addDelimiter(head, i), visited_paths);
-          }
-        }
-        return visited_paths;
-    };
-
-    return paths(obj);
+  return paths(obj);
 }
 
-CustomFields.Typeahead.prototype.widgetCreate_ = function() {
+CustomFields.Typeahead.prototype.widgetCreate_ = function () {
   var div = Blockly.WidgetDiv.DIV;
 
   Blockly.utils.dom.addClass(this.getClickTarget_(), "editing");
 
-  var htmlInput = /** @type {HTMLInputElement} */ (document.createElement(
-    "input"
-  ));
+  var htmlInput = /** @type {HTMLInputElement} */ (
+    document.createElement("input")
+  );
   htmlInput.className = "blocklyHtmlInput";
   htmlInput.setAttribute("spellcheck", this.spellcheck_);
 
@@ -112,7 +108,7 @@ CustomFields.Typeahead.prototype.widgetCreate_ = function() {
  * Resize the editor to fit the text.
  * @protected
  */
-CustomFields.Typeahead.prototype.resizeEditor_ = function() {
+CustomFields.Typeahead.prototype.resizeEditor_ = function () {
   var div = Blockly.WidgetDiv.DIV;
   var bBox = this.getScaledBBox();
   div.style.width = bBox.right - bBox.left + 20 + "px";
@@ -128,7 +124,7 @@ CustomFields.Typeahead.prototype.resizeEditor_ = function() {
 };
 
 Blockly.Blocks["autocomplete_context"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
       .appendField(new CustomFields.Typeahead(""), "ctx")
       .appendField("  ");
@@ -137,20 +133,20 @@ Blockly.Blocks["autocomplete_context"] = {
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["getcontext"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("getContext");
     this.setOutput(true, null);
     this.setColour(180);
     this.setTooltip("Get current Context");
     this.setHelpUrl("");
-  }
+  },
 };
 
-Blockly.JavaScript["getcontext"] = function(block) {
+Blockly.JavaScript["getcontext"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   var code = "JSON.parse(dataContext())";
   console.log(block);
@@ -158,7 +154,7 @@ Blockly.JavaScript["getcontext"] = function(block) {
 };
 
 Blockly.Blocks["fieldfromcontext"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
       .appendField("Field:")
       .appendField(new Blockly.FieldTextInput(""), "element");
@@ -167,10 +163,10 @@ Blockly.Blocks["fieldfromcontext"] = {
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
-Blockly.JavaScript["fieldfromcontext"] = function(block) {
+Blockly.JavaScript["fieldfromcontext"] = function (block) {
   var element = block.getFieldValue("element");
   var value_context = Blockly.JavaScript.valueToCode(
     block,
@@ -183,7 +179,7 @@ Blockly.JavaScript["fieldfromcontext"] = function(block) {
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript["autocomplete_context"] = function(block) {
+Blockly.JavaScript["autocomplete_context"] = function (block) {
   var element = block.getFieldValue("ctx");
   // TODO: Assemble JavaScript into code variable.
   var code = "JSON.parse(dataContext())." + element;

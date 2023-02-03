@@ -1,21 +1,23 @@
-query($formID: ID!){internalForm(id: $formID) {
-      jsCode
+query ($formID: ID!) {
+  internalForm(id: $formID) {
+    jsCode
     xmlCode
     id
     name
     description
     active
-      teams {
-    name
-    id
-  }
-   schemas {
-        edges {
-          node {
-            schema
-            id
-            key
-          }
+    teams {
+      name
+      id
+    }
+    schemas {
+      edges {
+        node {
+          schema
+          id
+          key
         }
       }
-}}
+    }
+  }
+}

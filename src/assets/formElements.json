@@ -3,25 +3,17 @@
     "name": "Text",
     "widget": null,
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
+    "typeChoices": ["string"],
     "additional": {},
-    "widgetChoices": [
-      ""
-    ],
+    "widgetChoices": [""],
     "id": 1
   },
   "long-text": {
     "name": "Long Text",
     "widget": "textarea",
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
-    "widgetChoices": [
-      "textarea"
-    ],
+    "typeChoices": ["string"],
+    "widgetChoices": ["textarea"],
     "additional": {},
     "id": 2
   },
@@ -29,10 +21,7 @@
     "name": "Number",
     "widget": null,
     "type": "number",
-    "typeChoices": [
-      "number",
-      "integer"
-    ],
+    "typeChoices": ["number", "integer"],
     "widgetChoices": [],
     "additional": {},
     "id": 3
@@ -41,23 +30,16 @@
     "name": "Content",
     "widget": "custom-tiptap",
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
+    "typeChoices": ["string"],
     "widgetChoices": ["custom-tiptap"],
-    "additional": {
-    },
+    "additional": {},
     "id": 13
   },
   "checkbox": {
     "name": "Checkbox",
     "widget": "checkbox",
     "type": "array",
-    "typeChoices": [
-      "array",
-      "boolean",
-      "string"
-    ],
+    "typeChoices": ["array", "boolean", "string"],
     "additional": {
       "items": {
         "type": "string",
@@ -73,22 +55,15 @@
         ]
       }
     },
-    "widgetChoices": [
-      "checkbox"
-    ],
+    "widgetChoices": ["checkbox"],
     "id": 4
   },
   "radio": {
     "name": "Radio",
     "widget": "radio",
     "type": "array",
-    "typeChoices": [
-      "array",
-      "string"
-    ],
-    "widgetChoices": [
-      "radio"
-    ],
+    "typeChoices": ["array", "string"],
+    "widgetChoices": ["radio"],
     "additional": {
       "items": {
         "type": "string",
@@ -110,12 +85,8 @@
     "name": "Switch",
     "widget": "switch",
     "type": "boolean",
-    "typeChoices": [
-      "boolean"
-    ],
-    "widgetChoices": [
-      "switch"
-    ],
+    "typeChoices": ["boolean"],
+    "widgetChoices": ["switch"],
     "additional": {
       "items": {
         "type": "string",
@@ -137,12 +108,8 @@
     "name": "File",
     "widget": "file",
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
-    "widgetChoices": [
-      "file"
-    ],
+    "typeChoices": ["string"],
+    "widgetChoices": ["file"],
     "additional": {},
     "id": 7
   },
@@ -150,14 +117,8 @@
     "name": "Date/Time",
     "widget": "date-time",
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
-    "widgetChoices": [
-      "date-time",
-      "date",
-      "time"
-    ],
+    "typeChoices": ["string"],
+    "widgetChoices": ["date-time", "date", "time"],
     "additional": {},
     "id": 8
   },
@@ -165,12 +126,8 @@
     "name": "Color",
     "widget": "color-picker",
     "type": "string",
-    "typeChoices": [
-      "string"
-    ],
-    "widgetChoices": [
-      "color-picker"
-    ],
+    "typeChoices": ["string"],
+    "widgetChoices": ["color-picker"],
     "additional": {},
     "id": 9
   }

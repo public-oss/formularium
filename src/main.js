@@ -11,7 +11,7 @@ Vue.config.ignoredElements = [
   "xml",
   "mutation",
   "value",
-  "sep"
+  "sep",
 ];
 import VJsf from "@koumoul/vjsf";
 import "@koumoul/vjsf/dist/main.css";
@@ -35,12 +35,12 @@ Vue.component("draggable", Draggable);
 
 Vue.use(TiptapVuetifyPlugin, {
   vuetify,
-  iconsGroup: "mdi"
+  iconsGroup: "mdi",
 });
 new Vue({
   router,
   store,
   vuetify,
   apolloProvider: createProvider(),
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

@@ -1,5 +1,4 @@
-query($formID: ID!)
-{
+query ($formID: ID!) {
   publicKeysForForm(formId: $formID) {
     publicKey
     active

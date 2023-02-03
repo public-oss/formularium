@@ -1,5 +1,4 @@
-query($formID: ID!)
-{
+query ($formID: ID!) {
   form(id: $formID) {
     jsCode
     xmlCode
@@ -7,14 +6,14 @@ query($formID: ID!)
     name
     description
     active
-     schemas {
-        edges {
-          node {
-            schema
-            id
-            key
-          }
+    schemas {
+      edges {
+        node {
+          schema
+          id
+          key
         }
       }
+    }
   }
 }

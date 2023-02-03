@@ -42,7 +42,7 @@ class JSInterpreter {
         this.schemaUpdate({
           exception: JSON.parse(
             JSON.stringify(error, Object.getOwnPropertyNames(error))
-          )
+          ),
         });
       }
       console.log("step executed");
@@ -82,12 +82,12 @@ class JSInterpreter {
   setupNativeFunctions() {
     var executor = this;
     // add all defined native functions
-    return function(interpreter, globalObject) {
+    return function (interpreter, globalObject) {
       for (let fn in executor.nativeFunctions) {
         interpreter.setProperty(
           globalObject,
           fn,
-          interpreter.createNativeFunction(function(props) {
+          interpreter.createNativeFunction(function (props) {
             // check if this is a function that adds st to the backstack
             console.log(fn);
             if (executor.backStackFns.includes(fn)) {

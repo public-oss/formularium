@@ -7,9 +7,7 @@
           <v-spacer></v-spacer>
 
           <v-toolbar-items v-if="me">
-            <v-btn to="/admin">
-              Admin Panel
-            </v-btn>
+            <v-btn to="/admin"> Admin Panel </v-btn>
             <v-menu
               open-on-hover
               offset-y
@@ -45,14 +43,14 @@ export default {
   components: {},
   data() {
     return {
-      pageTitle: process.env.VUE_APP_FORMULARIUM_TITLE
+      pageTitle: process.env.VUE_APP_FORMULARIUM_TITLE,
     };
   },
   methods: {
     logout() {
       AUTH.logout();
       this.$router.go("Home");
-    }
+    },
   },
   apollo: {
     me: {
@@ -61,9 +59,9 @@ export default {
       },
       skip() {
         return AUTH.isLoggedIn() === false;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

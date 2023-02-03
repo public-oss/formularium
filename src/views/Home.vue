@@ -15,11 +15,11 @@
           them in making their public services available online.
         </p>
         <p>
-          <strong>Why?</strong>: We feel that municipalities are a backbone to democracy
-          but often are left behind when extending the democratic government to
-          the digital world. We think that neither existing vendors nor the
-          federal government provides the software components and the concepts
-          needed to digitize municipalities’ processes.
+          <strong>Why?</strong>: We feel that municipalities are a backbone to
+          democracy but often are left behind when extending the democratic
+          government to the digital world. We think that neither existing
+          vendors nor the federal government provides the software components
+          and the concepts needed to digitize municipalities’ processes.
         </p>
         <p>
           Learn more on
@@ -42,12 +42,17 @@
               {{ item.node.description }}
             </v-card-text>
             <v-card-actions>
-              <v-btn text color="primary" :to="`/form/${item.node.id}`" :aria-label="item.node.name + ' form'">
+              <v-btn
+                text
+                color="primary"
+                :to="`/form/${item.node.id}`"
+                :aria-label="item.node.name + ' form'"
+              >
                 Form
               </v-btn>
               <v-btn
                 v-if="showPublicEditBtn === 'show'"
-                 :aria-label="item.node.name + ' editor'"
+                :aria-label="item.node.name + ' editor'"
                 text
                 color="primary"
                 :to="`/editor/${item.node.id}`"
@@ -71,15 +76,15 @@ export default {
   data() {
     return {
       showAboutFormularium: process.env.VUE_APP_SHOW_ABOUT_FORMULARIUM_PUBLIC,
-      showPublicEditBtn: process.env.VUE_APP_SHOW_FORM_EDITOR_BTN_PUBLIC
+      showPublicEditBtn: process.env.VUE_APP_SHOW_FORM_EDITOR_BTN_PUBLIC,
     };
   },
   apollo: {
     allForms: {
       query() {
         return require("../graphql/allForms.gql");
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>

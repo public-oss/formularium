@@ -3,7 +3,7 @@
 import * as Blockly from "blockly/core";
 
 Blockly.Blocks["formfield"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
       .appendField("Form Field")
       .appendField(
@@ -12,7 +12,7 @@ Blockly.Blocks["formfield"] = {
           ["number", "number"],
           ["integer", "integer"],
           ["boolean", "boolean"],
-          ["array", "array"]
+          ["array", "array"],
         ]),
         "type"
       );
@@ -33,7 +33,7 @@ Blockly.Blocks["formfield"] = {
           ["date-time", "date-time"],
           ["hexcolor", "hexcolor"],
           ["email", "email"],
-          ["uri", "uri"]
+          ["uri", "uri"],
         ]),
         "widget"
       );
@@ -50,25 +50,21 @@ Blockly.Blocks["formfield"] = {
       .setCheck([
         "length_validation",
         "numeric_value_validation",
-        "regex_validation"
+        "regex_validation",
       ])
       .appendField("Validation");
-    this.appendStatementInput("help")
-      .setCheck("help")
-      .appendField("Help:");
-    this.appendStatementInput("enums")
-      .setCheck("enum")
-      .appendField("Enums");
+    this.appendStatementInput("help").setCheck("help").appendField("Help:");
+    this.appendStatementInput("enums").setCheck("enum").appendField("Enums");
     this.setPreviousStatement(true, ["multiple", "formfield"]);
     this.setNextStatement(true, ["multiple", "formfield"]);
     this.setColour(230);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["formsection"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("Form Section");
     this.appendValueInput("name")
       .setCheck("String")
@@ -80,9 +76,7 @@ Blockly.Blocks["formsection"] = {
     this.appendStatementInput("form_fields")
       .setCheck(["formfield", "multiple"])
       .appendField("Form Fields:");
-    this.appendStatementInput("help")
-      .setCheck("help")
-      .appendField("Help:");
+    this.appendStatementInput("help").setCheck("help").appendField("Help:");
     this.appendValueInput("Context")
       .setCheck(null)
       .setAlign(Blockly.ALIGN_RIGHT)
@@ -90,21 +84,21 @@ Blockly.Blocks["formsection"] = {
     this.setPreviousStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setNextStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 import EditBtn from "../assets/edit_btn.svg";
 Blockly.Blocks["formsection_editor"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("Form Editor Section");
     this.appendValueInput("name")
       .setCheck("String")
@@ -119,17 +113,17 @@ Blockly.Blocks["formsection_editor"] = {
     this.setPreviousStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setNextStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 // crude way to communicate to vue.js to open the json editor.
@@ -143,8 +137,8 @@ function callJSONEditor(e) {
   var event = new CustomEvent("openSchemaEditor", {
     detail: {
       id: e.sourceBlock_.id,
-      name: e.sourceBlock_.getFieldValue("name")
-    }
+      name: e.sourceBlock_.getFieldValue("name"),
+    },
   });
   window.dispatchEvent(event);
 
@@ -152,11 +146,11 @@ function callJSONEditor(e) {
 }
 
 Blockly.Blocks["length_validation"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([
         ["Min Length", "minLength"],
-        ["Max Length", "maxLength"]
+        ["Max Length", "maxLength"],
       ]),
       "type"
     );
@@ -171,21 +165,21 @@ Blockly.Blocks["length_validation"] = {
     this.setPreviousStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setNextStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setColour(180);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["regex_validation"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("Regex Validation");
     this.appendValueInput("pattern")
       .setCheck("String")
@@ -198,25 +192,25 @@ Blockly.Blocks["regex_validation"] = {
     this.setPreviousStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setNextStatement(true, [
       "regex_validation",
       "numeric_value_validation",
-      "length_validation"
+      "length_validation",
     ]);
     this.setColour(180);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["numeric_value_validation"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField(
       new Blockly.FieldDropdown([
         ["Min Value", "minimum"],
-        ["Max Value", "maximum"]
+        ["Max Value", "maximum"],
       ]),
       "type"
     );
@@ -233,11 +227,11 @@ Blockly.Blocks["numeric_value_validation"] = {
     this.setColour(180);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["help"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput()
       .appendField("Help:")
       .appendField(
@@ -245,7 +239,7 @@ Blockly.Blocks["help"] = {
           ["Title", "title"],
           ["Description", "description"],
           ["Icon", "icon"],
-          ["Prefilled", "prefilled"]
+          ["Prefilled", "prefilled"],
         ]),
         "type"
       );
@@ -259,11 +253,11 @@ Blockly.Blocks["help"] = {
     this.setColour(90);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["enum"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("ENUM");
     this.appendDummyInput()
       .appendField("Value:")
@@ -277,11 +271,11 @@ Blockly.Blocks["enum"] = {
     this.setColour(60);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["enum_from_list"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("ENUM from List");
     this.setInputsInline(true);
     this.appendValueInput("list").appendField("List:");
@@ -290,11 +284,11 @@ Blockly.Blocks["enum_from_list"] = {
     this.setColour(60);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["multiple"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("Multiple");
     this.appendDummyInput()
       .appendField("Name: ")
@@ -310,19 +304,17 @@ Blockly.Blocks["multiple"] = {
       .setCheck("Number")
       .appendField("Max")
       .appendField(new Blockly.FieldNumber(0, 1), "max");
-    this.appendStatementInput("help")
-      .setCheck("help")
-      .appendField("Help");
+    this.appendStatementInput("help").setCheck("help").appendField("Help");
     this.setPreviousStatement(true, ["multiple", "formfield"]);
     this.setNextStatement(true, ["multiple", "formfield"]);
     this.setColour(285);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["jsonschemaformsection"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("JSON-Schema-Section");
     this.appendValueInput("name")
       .setCheck("String")
@@ -334,19 +326,17 @@ Blockly.Blocks["jsonschemaformsection"] = {
     this.appendDummyInput()
       .appendField("Schema")
       .appendField(new Blockly.FieldTextInput("null"), "schema");
-    this.appendStatementInput("help")
-      .setCheck("help")
-      .appendField("Help:");
+    this.appendStatementInput("help").setCheck("help").appendField("Help:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
 Blockly.Blocks["navigation"] = {
-  init: function() {
+  init: function () {
     this.appendDummyInput().appendField("Navigation");
     this.appendValueInput("name")
       .setCheck("String")
@@ -361,18 +351,16 @@ Blockly.Blocks["navigation"] = {
     this.appendStatementInput("options")
       .setCheck("enum")
       .appendField("Options (Enums):");
-    this.appendStatementInput("help")
-      .setCheck("help")
-      .appendField("Help:");
+    this.appendStatementInput("help").setCheck("help").appendField("Help:");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(0);
     this.setTooltip("");
     this.setHelpUrl("");
-  }
+  },
 };
 
-Blockly.JavaScript["formfield"] = function(block) {
+Blockly.JavaScript["formfield"] = function (block) {
   let dropdown_type = block.getFieldValue("type");
   let dropdown_widget = block.getFieldValue("widget");
   let checkbox_required = block.getFieldValue("required") == "TRUE";
@@ -393,8 +381,8 @@ Blockly.JavaScript["formfield"] = function(block) {
     type: dropdown_type,
     required: checkbox_required,
     "x-options": {
-      messages: {}
-    }
+      messages: {},
+    },
   };
 
   if (dropdown_widget !== "") {
@@ -432,7 +420,7 @@ Blockly.JavaScript["formfield"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["formsection"] = function(block) {
+Blockly.JavaScript["formsection"] = function (block) {
   let text_name = block.getFieldValue("name");
   let statements_form_fields = Blockly.JavaScript.statementToCode(
     block,
@@ -484,7 +472,7 @@ Blockly.JavaScript["formsection"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["formsection_editor"] = function(block) {
+Blockly.JavaScript["formsection_editor"] = function (block) {
   console.log(block.id);
   let text_name = block.getFieldValue("name");
   let value_name = Blockly.JavaScript.valueToCode(
@@ -513,7 +501,7 @@ Blockly.JavaScript["formsection_editor"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["length_validation"] = function(block) {
+Blockly.JavaScript["length_validation"] = function (block) {
   let dropdown_type = block.getFieldValue("type");
   let number_length = block.getFieldValue("length");
   let value_name = Blockly.JavaScript.valueToCode(
@@ -546,7 +534,7 @@ Blockly.JavaScript["length_validation"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["regex_validation"] = function(block) {
+Blockly.JavaScript["regex_validation"] = function (block) {
   let text_pattern = block.getFieldValue("pattern");
   let value_pattern = Blockly.JavaScript.valueToCode(
     block,
@@ -574,7 +562,7 @@ Blockly.JavaScript["regex_validation"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["numeric_value_validation"] = function(block) {
+Blockly.JavaScript["numeric_value_validation"] = function (block) {
   let dropdown_type = block.getFieldValue("type");
   let number_value = block.getFieldValue("value");
   let value_value = Blockly.JavaScript.valueToCode(
@@ -608,7 +596,7 @@ Blockly.JavaScript["numeric_value_validation"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["help"] = function(block) {
+Blockly.JavaScript["help"] = function (block) {
   let dropdown_type = block.getFieldValue("type");
   let text_value = block.getFieldValue("value");
   let value_value = Blockly.JavaScript.valueToCode(
@@ -626,7 +614,7 @@ Blockly.JavaScript["help"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["enum"] = function(block) {
+Blockly.JavaScript["enum"] = function (block) {
   let text_value = block.getFieldValue("value");
   let text_display = block.getFieldValue("display");
   // TODO: Assemble JavaScript into code variable.
@@ -642,7 +630,7 @@ Blockly.JavaScript["enum"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["enum_from_list"] = function(block) {
+Blockly.JavaScript["enum_from_list"] = function (block) {
   let value_list = Blockly.JavaScript.valueToCode(
     block,
     "list",
@@ -665,7 +653,7 @@ Blockly.JavaScript["enum_from_list"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["multiple"] = function(block) {
+Blockly.JavaScript["multiple"] = function (block) {
   let text_name = block.getFieldValue("name");
   let statements_fields = Blockly.JavaScript.statementToCode(block, "fields");
   let statements_help = Blockly.JavaScript.statementToCode(block, "help");
@@ -734,7 +722,7 @@ Blockly.JavaScript["multiple"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["jsonschemaformsection"] = function(block) {
+Blockly.JavaScript["jsonschemaformsection"] = function (block) {
   let text_name = block.getFieldValue("name");
   let text_schema = block.getFieldValue("schema");
   let statements_help = Blockly.JavaScript.statementToCode(block, "help");
@@ -769,7 +757,7 @@ Blockly.JavaScript["jsonschemaformsection"] = function(block) {
   return code;
 };
 
-Blockly.JavaScript["navigation"] = function(block) {
+Blockly.JavaScript["navigation"] = function (block) {
   let text_name = block.getFieldValue("name");
   let text_title = block.getFieldValue("title");
   let statements_help = Blockly.JavaScript.statementToCode(block, "help");

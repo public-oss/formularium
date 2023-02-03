@@ -13,17 +13,17 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/form/:id",
     name: "Form",
-    component: Form
+    component: Form,
   },
   {
     path: "/editor/:id",
     name: "Editor",
-    component: Editor
+    component: Editor,
   },
   {
     path: "/admin",
@@ -34,34 +34,34 @@ const routes = [
         next();
       } else {
         next({
-          name: "Home" // back to safety route //
+          name: "Home", // back to safety route //
         });
       }
-    }
+    },
   },
   {
     path: "/admin/login",
     name: "AdminLogin",
-    component: Login
+    component: Login,
   },
   {
     path: "/login/done",
-    beforeEnter: async function(to, from, next) {
+    beforeEnter: async function (to, from, next) {
       await AUTH.loginCallback(window.location)
-        .then(function() {
+        .then(function () {
           next("Admin");
         })
-        .catch(function() {
+        .catch(function () {
           next("Home");
         });
-    }
-  }
+    },
+  },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

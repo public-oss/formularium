@@ -116,7 +116,7 @@ export default {
     FormRenderer,
     FormEditor,
     BlocklyComponent,
-    CodeHighlight
+    CodeHighlight,
   },
   data() {
     return {
@@ -136,7 +136,7 @@ export default {
           spacing: 25,
           length: 3,
           colour: "#ccc",
-          snap: true
+          snap: true,
         },
         toolbox: `<xml>
           <category name="Logic" colour="%{BKY_LOGIC_HUE}">
@@ -215,8 +215,8 @@ export default {
             <block type="autocomplete_context"></block>
           </category>
 
-        </xml>`
-      }
+        </xml>`,
+      },
     };
   },
   methods: {
@@ -233,7 +233,7 @@ export default {
     download() {
       if (this.xml != null) {
         var blob = new Blob([this.xml], {
-          type: "application/xml;charset=utf-8"
+          type: "application/xml;charset=utf-8",
         });
         saveAs(blob, "app.xml");
       }
@@ -286,7 +286,7 @@ export default {
       this.$emit("saveForm", {
         xml: xml,
         code: code,
-        sectionSchemas: this.sectionSchemas
+        sectionSchemas: this.sectionSchemas,
       });
     },
 
@@ -300,7 +300,7 @@ export default {
             type: "object",
             title: "Form",
             name: null,
-            properties: {}
+            properties: {},
           };
         }
         this.updateSectionPaths();
@@ -333,18 +333,18 @@ export default {
         }
       }
       return results;
-    }
+    },
   },
   watch: {
     xmlCode(xmlCode) {
       var xml = Blockly.Xml.textToDom(xmlCode);
       Blockly.Xml.domToWorkspace(xml, this.$refs["blockly-ws"].workspace);
-    }
+    },
   },
 
   mounted() {
     const that = this;
-    window.addEventListener("openSchemaEditor", function(e) {
+    window.addEventListener("openSchemaEditor", function (e) {
       console.log(e);
       let name = null;
       if (e.detail.name !== "") {
@@ -353,7 +353,7 @@ export default {
       that.openSchemaFormEditor(e.detail.id, name);
     });
     this.$refs["blockly-ws"].workspace.addChangeListener(this.eventHandler);
-  }
+  },
 };
 </script>
 

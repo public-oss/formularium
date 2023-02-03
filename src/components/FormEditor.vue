@@ -9,9 +9,7 @@
           <v-toolbar-title>Form Editor</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark text @click="save()">
-              Save
-            </v-btn>
+            <v-btn dark text @click="save()"> Save </v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div class="formEditor">
@@ -36,7 +34,7 @@ export default {
     console.log(this.$props.initialSchema);
     return {
       initialSchema_: this.$props.initialSchema,
-      schema: {}
+      schema: {},
     };
   },
   props: ["visible", "sectionID", "initialSchema"],
@@ -48,10 +46,10 @@ export default {
     save() {
       this.$emit("updateSchema", {
         id: this.$props.sectionID,
-        schema: this.schema
+        schema: this.schema,
       });
       this.showModal = false;
-    }
+    },
   },
 
   computed: {
@@ -61,9 +59,9 @@ export default {
       },
       set(value) {
         this.$emit("close", value);
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

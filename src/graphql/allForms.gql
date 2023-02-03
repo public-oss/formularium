@@ -1,10 +1,12 @@
 {
   allForms {
-    edges {node {
-      id
-      active
-      name
-      description
-    }}
+    edges {
+      node {
+        id
+        active
+        name
+        description
+      }
+    }
   }
 }

@@ -12,12 +12,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text @click="show = false">
-          Close
-        </v-btn>
-        <v-btn color="primary" text @click="submitForm">
-          Save
-        </v-btn>
+        <v-btn text @click="show = false"> Close </v-btn>
+        <v-btn color="primary" text @click="submitForm"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -28,7 +24,7 @@ export default {
   name: "CreateForm",
 
   props: {
-    value: Boolean
+    value: Boolean,
   },
   data() {
     return {
@@ -38,19 +34,19 @@ export default {
         properties: {
           name: {
             title: "Name",
-            type: "string"
+            type: "string",
           },
           description: {
             title: "Description",
             type: "string",
-            "x-display": "textarea"
-          }
+            "x-display": "textarea",
+          },
         },
         dependencies: {},
-        required: ["name", "description"]
+        required: ["name", "description"],
       },
       data: {},
-      valid: null
+      valid: null,
     };
   },
   computed: {
@@ -60,8 +56,8 @@ export default {
       },
       set(value) {
         this.$emit("input", value);
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -77,21 +73,21 @@ export default {
             // Parameters
             variables: {
               name: this.data.name,
-              description: this.data.description
-            }
+              description: this.data.description,
+            },
           })
-          .then(data => {
+          .then((data) => {
             console.log(data);
             this.$emit("createdForm");
 
             that.show = false;
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
           });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

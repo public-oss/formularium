@@ -95,7 +95,7 @@ export default {
   props: ["initialSchema"],
   components: {
     FormElement,
-    draggable
+    draggable,
   },
   data() {
     console.log(this.$props.initialSchema);
@@ -118,7 +118,7 @@ export default {
             .toString(36)
             .replace(/[^a-z]+/g, "")
             .substr(0, 5),
-          schema: { type: "object", required: [], properties: {} }
+          schema: { type: "object", required: [], properties: {} },
         };
         element.schema.properties[e] = this.$props.initialSchema.properties[e];
         element.schema.required = this.$props.initialSchema.required;
@@ -135,16 +135,16 @@ export default {
       list2: list2,
       formData: {},
       title: title,
-      schema: {}
+      schema: {},
     };
   },
   watch: {
     list2() {
       this.updateElement();
-    }
+    },
   },
   methods: {
-    log: function(evt) {
+    log: function (evt) {
       window.console.log(evt);
     },
     removeAt(idx) {
@@ -157,9 +157,8 @@ export default {
       new_schema.properties = {};
       console.log(this.list2);
       for (let e in this.list2) {
-        new_schema.properties[this.list2[e].fieldKey] = this.list2[
-          e
-        ].schema.properties[this.list2[e].fieldKey];
+        new_schema.properties[this.list2[e].fieldKey] =
+          this.list2[e].schema.properties[this.list2[e].fieldKey];
         for (let r in this.list2[e].schema.required) {
           new_schema.required.push(this.list2[e].schema.required[r]);
         }
@@ -184,7 +183,7 @@ export default {
         description: "",
         title: item.name,
         "x-type-id": item.typeID,
-        ...item.additional
+        ...item.additional,
       };
       if (item.widget !== "") {
         if (
@@ -213,14 +212,14 @@ export default {
         schema: {
           type: "object",
           required: [],
-          properties: {}
-        }
+          properties: {},
+        },
       };
 
       element["schema"]["properties"][fieldKey] = json;
       return element;
-    }
-  }
+    },
+  },
 };
 </script>
 

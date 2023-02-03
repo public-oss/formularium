@@ -14,12 +14,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text @click="show = false">
-          Close
-        </v-btn>
-        <v-btn color="primary" text @click="submitForm">
-          Save
-        </v-btn>
+        <v-btn text @click="show = false"> Close </v-btn>
+        <v-btn color="primary" text @click="submitForm"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -31,7 +27,7 @@ export default {
 
   props: {
     value: Boolean,
-    formID: String
+    formID: String,
   },
   data() {
     return {
@@ -41,25 +37,25 @@ export default {
         properties: {
           name: {
             title: "Name",
-            type: "string"
+            type: "string",
           },
           description: {
             title: "Description",
             type: "string",
-            "x-display": "textarea"
+            "x-display": "textarea",
           },
           active: {
             title: "Active",
             description: "Indicates if user can use this form",
             type: "boolean",
-            "x-display": "switch"
-          }
+            "x-display": "switch",
+          },
         },
         dependencies: {},
-        required: ["name", "description"]
+        required: ["name", "description"],
       },
       data: {},
-      valid: null
+      valid: null,
     };
   },
   computed: {
@@ -69,8 +65,8 @@ export default {
       },
       set(value) {
         this.$emit("input", value);
-      }
-    }
+      },
+    },
   },
 
   methods: {
@@ -89,25 +85,25 @@ export default {
               name: this.data.name,
               description: this.data.description,
               active: this.data.active,
-              formId: this.$props.formID
-            }
+              formId: this.$props.formID,
+            },
           })
-          .then(data => {
+          .then((data) => {
             this.$emit("editedForm");
 
             console.log(data);
             that.show = false;
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
           });
       }
-    }
+    },
   },
   watch: {
-    internalForm: function(result) {
+    internalForm: function (result) {
       this.data = result;
-    }
+    },
   },
   apollo: {
     internalForm: {
@@ -116,14 +112,14 @@ export default {
       },
       variables() {
         return {
-          formID: this.$props.formID
+          formID: this.$props.formID,
         };
       },
       skip() {
         return this.$props.formID === null;
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

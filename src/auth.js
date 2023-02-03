@@ -18,10 +18,7 @@ function generateCodeVerifier() {
 
 function createCodeChallenge(codeVerifier) {
   return toBase64UrlEncoded(
-    crypto
-      .createHash("sha256")
-      .update(codeVerifier, "ascii")
-      .digest("base64")
+    crypto.createHash("sha256").update(codeVerifier, "ascii").digest("base64")
   );
 }
 
@@ -33,7 +30,7 @@ var authServer = new ClientOAuth2({
   accessTokenUri: process.env.VUE_APP_ACCESS_TOKEN_URI,
   authorizationUri: process.env.VUE_APP_AUTHORIZATION_URI,
   redirectUri: process.env.VUE_APP_REDIRECT_URI,
-  scopes: ["administrative-staff"]
+  scopes: ["administrative-staff"],
 });
 
 export function loginURI() {
@@ -44,8 +41,8 @@ export function loginURI() {
     state: "acab",
     query: {
       code_challenge: codeChallenge,
-      code_challenge_method: "S256"
-    }
+      code_challenge_method: "S256",
+    },
   });
 }
 
@@ -53,11 +50,11 @@ export async function loginCallback(uri) {
   console.log(getChallenge());
   await authServer.code
     .getToken(uri, { body: { code_verifier: getChallenge()["verifier"] } })
-    .then(function(user) {
+    .then(function (user) {
       //console.log(user)
       setAuthToken(user.accessToken);
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log(error);
     });
 }

@@ -1,309 +1,276 @@
 {
-   "type":"object",
-   "x-display":"tabs",
-   "x-props":{
-      "grow":true
-   },
-   "allOf":[
+  "type": "object",
+  "x-display": "tabs",
+  "x-props": {
+    "grow": true
+  },
+  "allOf": [
+    {
+      "type": "object",
+      "title": "Content",
+      "allOf": [
+        {
+          "properties": {
+            "x-display": {
+              "type": "string",
+              "x-display": "hidden"
+            }
+          },
+          "if": {
+            "required": ["x-display"],
+            "properties": {
+              "x-display": {
+                "const": "custom-tiptap"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "html": {
+                "type": "string",
+                "x-display": "custom-tiptap"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Field name"
+              },
+              "description": {
+                "title": "Help Text",
+                "type": "string"
+              },
+              "required": {
+                "type": "boolean",
+                "title": "Required",
+                "x-display": "checkbox"
+              },
 
-      {
-         "type":"object",
-         "title":"Content",
-         "allOf":[
-            {
-               "properties":{
-                  "x-display":{
-                     "type":"string",
-                     "x-display":"hidden"
-                  }
-               },
-               "if":{
-                  "required":[
-                     "x-display"
-                  ],
-                  "properties":{
-                     "x-display":{
-                        "const":"custom-tiptap"
-                     }
-                  }
-               },
-               "then":{
-                  "properties":{
-                     "html":{
-                        "type":"string",
-                        "x-display": "custom-tiptap"
-                     }
-                  }
-               },
-               "else": {
-
-         "properties":{
-            "title":{
-               "type":"string",
-               "title":"Field name"
-            },
-            "description":{
-               "title":"Help Text",
-               "type":"string"
-            },
-            "required":{
-               "type":"boolean",
-               "title":"Required",
-               "x-display":"checkbox"
-            },
-
-            "type":{
-               "type":"string",
-               "title":"Data type",
-               "enum":[
+              "type": {
+                "type": "string",
+                "title": "Data type",
+                "enum": [
                   "string",
                   "number",
                   "integer",
                   "boolean",
                   "array",
                   "object"
-               ],
-               "x-display":"hidden"
+                ],
+                "x-display": "hidden"
+              }
             }
-         }
-               }
-
-
-
-            },
-            {
-               "properties":{
-                  "type":{
-                     "type":"string",
-                     "x-display":"hidden"
-                  }
-               },
-              "if":{
-            "required":[
-               "type"
-            ],
-            "properties":{
-               "type":{
-                  "const":"array"
-               }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "x-display": "hidden"
             }
-         },
-         "then":{
-            "properties":{
-               "items":{
-                  "type":"object",
-                  "properties":{
-                     "type":{
-                        "type":"string",
-                        "title":"Data type",
-                        "enum":[
-                           "string"
-                        ],
-                        "x-display":"hidden"
-                     },
-                     "oneOf":{
-                        "type":"array",
-                        "title":"Options",
-                        "items":{
-                           "type":"object",
-                           "properties":{
-                              "const":{
-                                 "title":"Value",
-                                 "type":"string"
-                              },
-                              "title":{
-                                 "title":"Display",
-                                 "type":"string"
-                              }
-                           }
+          },
+          "if": {
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "const": "array"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "title": "Data type",
+                    "enum": ["string"],
+                    "x-display": "hidden"
+                  },
+                  "oneOf": {
+                    "type": "array",
+                    "title": "Options",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "const": {
+                          "title": "Value",
+                          "type": "string"
+                        },
+                        "title": {
+                          "title": "Display",
+                          "type": "string"
                         }
-                     }
+                      }
+                    }
                   }
-               }
+                }
+              }
             }
-         }
-
-
-            }
-         ]
-      },
-      {
-         "type":"object",
-         "title":"Format",
-         "properties":{
-            "type":{
-               "type":"string",
-               "title":"Data type",
-               "enum":[
-                  "string",
-                  "number",
-                  "integer",
-                  "boolean",
-                  "array",
-                  "object"
-               ],
-               "readOnly":true
-            },
-            "x-display":{
-               "type":"string",
-               "title":"Display as",
-               "enum":[
-                  "color-picker",
-                  "radio",
-                  "checkbox",
-                  "switch",
-                  "file",
-                  "expansion-panels",
-                  "tabs",
-                  "hidden",
-                  "textarea",
-                  "custom-tiptap"
-               ]
-            },
-            "format":{
-               "type":"string",
-               "enum":[
-                  "date",
-                  "date-time",
-                  "time",
-                  "hexcolor",
-                  "email",
-                  "url"
-               ]
-            }
-         }
-      },
-      {
-         "type":"object",
-         "title":"Validation",
-         "allOf":[
-            {
-               "properties":{
-                  "type":{
-                     "type":"string",
-                     "title":"Data type",
-                     "enum":[
-                        "string",
-                        "number",
-                        "integer",
-                        "boolean",
-                        "array",
-                        "object"
-                     ],
-                     "x-display":"hidden"
-                  }
-               },
-               "if":{
-                  "required":[
-                     "type"
-                  ],
-                  "properties":{
-                     "type":{
-                        "const":"array"
-                     }
-                  }
-               },
-               "then":{
-                  "properties":{
-                     "minItems":{
-                        "type":"integer",
-                        "title":"Minimum Items"
-                     },
-                     "maxItems":{
-                        "type":"integer",
-                        "title":"Maximum Items"
-                     }
-                  }
-               }
-            },
-            {
-               "properties":{
-                  "type":{
-                     "type":"string",
-                     "title":"Data type",
-                     "enum":[
-                        "string",
-                        "number",
-                        "integer",
-                        "boolean",
-                        "array",
-                        "object"
-                     ],
-                     "x-display":"hidden"
-                  }
-               },
-               "if":{
-                  "required":[
-                     "type"
-                  ],
-                  "properties":{
-                     "type":{
-                        "const":"number"
-                     }
-                  }
-               },
-               "then":{
-                  "properties":{
-                     "minimum":{
-                        "type":"integer",
-                        "title":"Minimum"
-                     },
-                     "maximum":{
-                        "type":"integer",
-                        "title":"Maximum"
-                     },
-                     "multipleOf":{
-                        "type":"integer",
-                        "title":"Multiple of "
-                     }
-                  }
-               }
-            },
-            {
-               "properties":{
-                  "type":{
-                     "type":"string",
-                     "title":"Data type",
-                     "enum":[
-                        "string",
-                        "number",
-                        "integer",
-                        "boolean",
-                        "array",
-                        "object"
-                     ],
-                     "x-display":"hidden"
-                  }
-               },
-               "if":{
-                  "required":[
-                     "type"
-                  ],
-                  "properties":{
-                     "type":{
-                        "const":"string"
-                     }
-                  }
-               },
-               "then":{
-                  "properties":{
-                     "minLength":{
-                        "type":"integer",
-                        "title":"Minimum Length"
-                     },
-                     "maxLength":{
-                        "type":"integer",
-                        "title":"Maximum Length"
-                     },
-                     "pattern":{
-                        "type":"string",
-                        "format":"regex",
-                        "title":"Regular Expression Pattern"
-                     }
-                  }
-               }
-            }
-         ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "object",
+      "title": "Format",
+      "properties": {
+        "type": {
+          "type": "string",
+          "title": "Data type",
+          "enum": ["string", "number", "integer", "boolean", "array", "object"],
+          "readOnly": true
+        },
+        "x-display": {
+          "type": "string",
+          "title": "Display as",
+          "enum": [
+            "color-picker",
+            "radio",
+            "checkbox",
+            "switch",
+            "file",
+            "expansion-panels",
+            "tabs",
+            "hidden",
+            "textarea",
+            "custom-tiptap"
+          ]
+        },
+        "format": {
+          "type": "string",
+          "enum": ["date", "date-time", "time", "hexcolor", "email", "url"]
+        }
       }
-   ]
+    },
+    {
+      "type": "object",
+      "title": "Validation",
+      "allOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Data type",
+              "enum": [
+                "string",
+                "number",
+                "integer",
+                "boolean",
+                "array",
+                "object"
+              ],
+              "x-display": "hidden"
+            }
+          },
+          "if": {
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "const": "array"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minItems": {
+                "type": "integer",
+                "title": "Minimum Items"
+              },
+              "maxItems": {
+                "type": "integer",
+                "title": "Maximum Items"
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Data type",
+              "enum": [
+                "string",
+                "number",
+                "integer",
+                "boolean",
+                "array",
+                "object"
+              ],
+              "x-display": "hidden"
+            }
+          },
+          "if": {
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "const": "number"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minimum": {
+                "type": "integer",
+                "title": "Minimum"
+              },
+              "maximum": {
+                "type": "integer",
+                "title": "Maximum"
+              },
+              "multipleOf": {
+                "type": "integer",
+                "title": "Multiple of "
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "title": "Data type",
+              "enum": [
+                "string",
+                "number",
+                "integer",
+                "boolean",
+                "array",
+                "object"
+              ],
+              "x-display": "hidden"
+            }
+          },
+          "if": {
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "const": "string"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "minLength": {
+                "type": "integer",
+                "title": "Minimum Length"
+              },
+              "maxLength": {
+                "type": "integer",
+                "title": "Maximum Length"
+              },
+              "pattern": {
+                "type": "string",
+                "format": "regex",
+                "title": "Regular Expression Pattern"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
 }

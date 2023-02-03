@@ -124,7 +124,7 @@ function deserialize(json, interpreter) {
           configurable: nonConfigurable.indexOf(name) === -1,
           enumerable: nonEnumerable.indexOf(name) === -1,
           writable: nonWritable.indexOf(name) === -1,
-          value: decodeValue(props[name])
+          value: decodeValue(props[name]),
         });
       }
     }
@@ -193,7 +193,7 @@ function serialize(interpreter) {
     "URI_ERROR",
     "globalScope",
     "globalObject",
-    "stateStack"
+    "stateStack",
   ];
   var root = Object.create(null);
   for (var i = 0; i < properties.length; i++) {
@@ -320,7 +320,7 @@ const InterpreterSerializer = {
   },
   deserialize(json, interpreter) {
     return deserialize(json, interpreter);
-  }
+  },
 };
 
 export default InterpreterSerializer;

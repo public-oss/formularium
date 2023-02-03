@@ -37,7 +37,7 @@ import {
   Code,
   HorizontalRule,
   Paragraph,
-  HardBreak
+  HardBreak,
 } from "tiptap-vuetify";
 import "tiptap-vuetify/dist/main.css";
 
@@ -57,7 +57,7 @@ export default {
     disabled: { type: Boolean, default: false },
     required: { type: Boolean, default: false },
     rules: { type: Array, required: true },
-    on: { type: Object, required: true }
+    on: { type: Object, required: true },
   },
   data() {
     return {
@@ -75,23 +75,23 @@ export default {
           Heading,
           {
             options: {
-              levels: [1, 2, 3]
-            }
-          }
+              levels: [1, 2, 3],
+            },
+          },
         ],
         Bold,
         Code,
         HorizontalRule,
         Paragraph,
-        HardBreak
-      ]
+        HardBreak,
+      ],
     };
   },
   computed: {
     sanitizedHtml() {
       console.log(this.value);
       return this.value && sanitizeHtml(this.value);
-    }
+    },
   },
   methods: {
     input(value) {
@@ -103,8 +103,8 @@ export default {
       if (value === "<p></p>") value = "";
       // sanitizing should also be done when receiving this data in the backend
       this.on.input(sanitizeHtml(value));
-    }
-  }
+    },
+  },
 };
 </script>
 

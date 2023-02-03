@@ -15,38 +15,37 @@ class PDFGenerator {
         title: "Übermittlungsbericht",
         author: "Formularium",
         json: model,
-        schema: schema
+        schema: schema,
       },
 
       content: [
         { text: "Übermittlungsbericht", style: "header", margin: [0, 5] },
         {
-          text:
-            "Dieses Dokument ist in seiner digitalen Form ein qualifizierter Sendebericht."
+          text: "Dieses Dokument ist in seiner digitalen Form ein qualifizierter Sendebericht.",
         },
-        { text: "Folgende Informationen wurden erfolgreich übermittelt:" }
+        { text: "Folgende Informationen wurden erfolgreich übermittelt:" },
       ],
       styles: {
         header: {
           fontSize: 22,
-          bold: true
+          bold: true,
         },
 
         sectionTitle: {
           fontSize: 18,
-          bold: true
+          bold: true,
         },
 
         fieldName: {
           fontSize: 13,
-          bold: true
+          bold: true,
         },
 
         fieldContent: {
           fontSize: 13,
-          bold: false
-        }
-      }
+          bold: false,
+        },
+      },
     };
   }
 
@@ -71,7 +70,7 @@ class PDFGenerator {
       this.docDefinition.content.push({
         text: section.properties[e].title,
         style: "sectionTitle",
-        margin: [0, 10, 0, 5]
+        margin: [0, 10, 0, 5],
       });
       for (var field in section.properties[e].properties) {
         this.parseFormField(
@@ -87,7 +86,7 @@ class PDFGenerator {
     if (model instanceof Array) {
       value = model.join(", ");
     } else if (field.oneOf) {
-      value = field.oneOf.filter(obj => {
+      value = field.oneOf.filter((obj) => {
         return obj.const == model;
       })[0]["title"];
     } else {
@@ -99,14 +98,14 @@ class PDFGenerator {
         {
           width: "30%",
           text: field.title,
-          style: "fieldName"
+          style: "fieldName",
         },
         {
           width: "70%",
           text: value,
-          style: "fieldContent"
-        }
-      ]
+          style: "fieldContent",
+        },
+      ],
     });
   }
 
@@ -114,7 +113,7 @@ class PDFGenerator {
     this.docDefinition.content.push({
       text: section.title,
       style: "sectionTitle",
-      margin: [0, 10, 0, 5]
+      margin: [0, 10, 0, 5],
     });
     if (section.oneOf) {
       this.docDefinition.content.push({
@@ -122,16 +121,16 @@ class PDFGenerator {
           {
             width: "30%",
             text: "Auswahl",
-            style: "fieldName"
+            style: "fieldName",
           },
           {
             width: "70%",
-            text: section.oneOf.filter(obj => {
+            text: section.oneOf.filter((obj) => {
               return obj.const == this.model[section.name];
             })[0]["title"],
-            style: "fieldContent"
-          }
-        ]
+            style: "fieldContent",
+          },
+        ],
       });
     }
   }

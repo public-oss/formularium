@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="blocklyDiv" ref="blocklyDiv"></div>
-    <xml ref="blocklyToolbox" style="display:none">
+    <xml ref="blocklyToolbox" style="display: none">
       <slot></slot>
     </xml>
   </div>
@@ -14,7 +14,7 @@ export default {
   props: ["options"],
   data() {
     return {
-      workspace: null
+      workspace: null,
     };
   },
   mounted() {
@@ -24,7 +24,7 @@ export default {
     }
     options.media = "/media/";
     this.workspace = Blockly.inject(this.$refs["blocklyDiv"], options);
-  }
+  },
 };
 </script>
 

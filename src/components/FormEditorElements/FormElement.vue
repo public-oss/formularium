@@ -4,7 +4,7 @@
       'editor-active': editor === true,
       'elevation-3': editor === true,
       'form-item-not-editor': editor === false,
-      'form-item': true
+      'form-item': true,
     }"
   >
     <v-row>
@@ -13,7 +13,7 @@
           :class="{
             'float-right': editor === false,
             'edit-option': editor === false,
-            'edit-option-hidden': editor === true
+            'edit-option-hidden': editor === true,
           }"
         >
           <v-btn x-small @click="showEditor()">
@@ -36,9 +36,7 @@
       </v-col>
       <v-row class="float-right my-2 py-1 actions">
         <v-col cols="8">
-          <v-btn @click="done()" color="primary">
-            done
-          </v-btn></v-col
+          <v-btn @click="done()" color="primary"> done </v-btn></v-col
         >
         <v-col cols="4" sm="4">
           <v-text-field
@@ -77,7 +75,7 @@ export default {
       editor: false,
       editorSettings: [],
       editorView: null,
-      editorSettingsModel: {}
+      editorSettingsModel: {},
     };
   },
 
@@ -103,9 +101,8 @@ export default {
       console.log("save");
       console.log(this.element);
       if (this.element.fieldKey !== this.key) {
-        this.element.schema.properties[
-          this.key
-        ] = this.element.schema.properties[this.element.fieldKey];
+        this.element.schema.properties[this.key] =
+          this.element.schema.properties[this.element.fieldKey];
         delete this.element.schema.properties[this.element.fieldKey];
         this.element.fieldKey = this.key;
       }
@@ -116,8 +113,8 @@ export default {
       }
 
       this.$emit("updateElement");
-    }
-  }
+    },
+  },
 };
 </script>
 

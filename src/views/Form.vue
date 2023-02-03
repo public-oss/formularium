@@ -15,7 +15,7 @@ import FormRenderer from "./../components/FormRenderer";
 export default {
   name: "Form",
   components: {
-    FormRenderer
+    FormRenderer,
   },
   data() {
     return { code: null, id: null, schemas: {} };
@@ -29,20 +29,20 @@ export default {
           form.schemas.edges[schema].node.schema
         );
       }
-    }
+    },
   },
   apollo: {
     form: {
       query() {
         return require("../graphql/form.gql");
       },
-      variables: function() {
+      variables: function () {
         return {
-          formID: this.$route.params.id
+          formID: this.$route.params.id,
         };
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 

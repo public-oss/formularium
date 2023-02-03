@@ -32,7 +32,7 @@ export default {
       snackText: null,
       snackTimeout: 2000,
       schemas: {},
-      showSave: AUTH.isLoggedIn()
+      showSave: AUTH.isLoggedIn(),
     };
   },
   watch: {
@@ -45,7 +45,7 @@ export default {
         );
       }
       console.log(this.schemas);
-    }
+    },
   },
 
   methods: {
@@ -59,10 +59,10 @@ export default {
             variables: {
               formId: this.$route.params.id,
               key: section,
-              schema: JSON.stringify(data.sectionSchemas[section])
-            }
+              schema: JSON.stringify(data.sectionSchemas[section]),
+            },
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(error);
             this.snackText = "An error occured while saving a schema" + error;
             this.snackbar = true;
@@ -77,20 +77,20 @@ export default {
           variables: {
             formId: this.$route.params.id,
             xmlCode: data.xml,
-            jsCode: data.code
-          }
+            jsCode: data.code,
+          },
         })
-        .then(data => {
+        .then((data) => {
           console.log(data);
           this.snackText = "Form has been saved";
           this.snackbar = true;
         })
-        .catch(error => {
+        .catch((error) => {
           console.error(error);
           this.snackText = "An error occured while saving the form " + error;
           this.snackbar = true;
         });
-    }
+    },
   },
 
   apollo: {
@@ -102,14 +102,14 @@ export default {
           return require("../graphql/form.gql");
         }
       },
-      update: data => data.form || data.internalForm,
-      variables: function() {
+      update: (data) => data.form || data.internalForm,
+      variables: function () {
         return {
-          formID: this.$route.params.id
+          formID: this.$route.params.id,
         };
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
 
